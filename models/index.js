@@ -1,13 +1,21 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const shortid = require('shortid');
 
+// Conexão com SQL Server usando Sequelize
 const sequelize = new Sequelize(
-    process.env.MYSQL_DATABASE,
-    process.env.MYSQL_USER,
-    process.env.MYSQL_PASSWORD,
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
     {
-        host: process.env.MYSQL_HOST,
-        dialect: 'mysql',
+        host: process.env.DB_HOST,
+        dialect: process.env.DB_DIALECT || 'mssql',
+        dialectOptions: {
+            options: {
+                encrypt: false,
+                trustServerCertificate: true,
+            },
+        },
+        logging: false,
     }
 );
 
@@ -17,7 +25,7 @@ const Usuario = sequelize.define(
     {
         id: {
             type: DataTypes.STRING,
-            defaultValue: shortid.generate,
+            defaultValue: () => shortid.generate(), // usar função, não referência direta
             primaryKey: true,
         },
         nome: {

@@ -1,0 +1,18 @@
+Projeto:
+01. Conferir as variaveis de ambiente
+02. config do banco "config/database.js"
+03. config para se conectar ao banco
+
+Banco de dados
+01. win + r -> services.msc
+* SQL Server (SQLEXPRESS) tem que estar rodando
+
+02. C:\Windows\SysWOW64\SQLServerManager16
+SQL Server Network Configuration → Protocols for SQLEXPRESS (ou seu nome de instância)
+TCP/IP deve estar Enable
+clique duas vezes em TCP/IP -> IPALL: 1433
+Reinicie o serviço SQL
+
+03. Criar banco (CFNP)
+* criar as tabelas -> conforme os comandos no arquivo requisitos.txt
+
